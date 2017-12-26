@@ -17,18 +17,18 @@ composer require php-twinfield/twinfield
 ## Usage
 
 ### Authentication
-You need to set up a `\PhpTwinfield\Secure\Config` class with your credentials. An example using basic username and
+You need to set up a `\Pronamic\Twinfield\Secure\Config` class with your credentials. An example using basic username and
 password authentication:
 
 ```php
-$config = new \PhpTwinfield\Secure\Config();
+$config = new \Pronamic\Twinfield\Secure\Config();
 $config->setCredentials('Username', 'Password', 'Organization', 'Office');
 ```
 
 Another example, using OAuth:
 
 ```php
-$config = new \PhpTwinfield\Secure\Config();
+$config = new \Pronamic\Twinfield\Secure\Config();
 
 // The true parameter at the end tells the system to automatically redirect to twinfield to login.
 $config->setOAuthParameters('clientID', 'clientSecret', 'returnURL', 'Organization', 'Office', true);
@@ -41,7 +41,7 @@ resource and use the `get()` or `list()` method.
 An example:
 
 ```php
-$customerApiConnector = new \PhpTwinfield\ApiConnectors\CustomerApiConnector($config);
+$customerApiConnector = new \Pronamic\Twinfield\ApiConnectors\CustomerApiConnector($config);
 
 // Get one customer.
 $customer = $customerApiConnector->get('1001');
@@ -54,17 +54,17 @@ $customer = $customerApiConnector->listAll();
 If you want to create or update a customer or any other object, it's just as easy:
 
 ```php
-$customer_factory = new \PhpTwinfield\ApiConnectors\CustomerApiConnector($config);
+$customer_factory = new \Pronamic\Twinfield\ApiConnectors\CustomerApiConnector($config);
 
 // First, create the objects you want to send.
-$customer = new \PhpTwinfield\Customer();
+$customer = new \Pronamic\Twinfield\Customer();
 $customer
     ->setCode('1001')
     ->setName('John Doe')
     ->setType('DEB')
     ->setEBilling(false);
 
-$customer_address = new \PhpTwinfield\CustomerAddress();
+$customer_address = new \Pronamic\Twinfield\CustomerAddress();
 $customer_address
     ->setType('invoice')
     ->setDefault(false)
